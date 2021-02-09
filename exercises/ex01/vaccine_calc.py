@@ -15,6 +15,21 @@ from datetime import datetime
 #
 # Official Documentation: https://docs.python.org/3/library/datetime.html#datetime.timedelta
 from datetime import timedelta
+from math import ceil, floor
 
 
 # Begin your solution here...
+population = int(input("Population: "))
+administered = int(input("Doses administered: "))
+doses_per_day = int(input("Doses per day: "))
+target = int(input("Target percent vaccinated: "))
+
+target_pop_num = population * target / 100.0
+pop_left_to_target = target_pop_num - (administered / 2.0)
+days_left = floor(2.0 * pop_left_to_target / doses_per_day)
+#msg = "We will reach 80% vaccination in 364 days, which falls on February 02, 2022."
+today = datetime.today()
+days = timedelta(days_left)
+date = today + days
+msg = "We will reach " + str(target) + "% vaccination in " + str(days_left) + " days, which falls on " + date.strftime("%B %d, %Y")
+print (msg)
